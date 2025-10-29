@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Form Application</h1>
+        </header>
+
+        <main>
+            <!-- Form Section -->
+            <section class="form-section">
+                <h2>Fill Form</h2>
+                <form id="formEntry">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Form</button>
+                </form>
+                <div id="successMessage" class="message success" style="display: none;"></div>
+                <div id="errorMessage" class="message error" style="display: none;"></div>
+            </section>
+
+            <!-- History Section -->
+            <section class="history-section">
+                <h2>Form History</h2>
+                <button id="loadHistory" class="load-btn">Load History</button>
+                <div id="historyContainer" class="history-container"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
