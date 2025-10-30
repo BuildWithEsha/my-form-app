@@ -12,6 +12,8 @@ services:
       - NODE_ENV=production
     ports:
       - "3000:3000"
+    networks:
+      - app_network
     restart: unless-stopped
   frontend:
     build:
@@ -22,4 +24,10 @@ services:
       - "8080:80"
     depends_on:
       - backend
+    networks:
+      - app_network
     restart: unless-stopped
+
+networks:
+  app_network:
+    external: true
