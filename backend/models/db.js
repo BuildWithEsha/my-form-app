@@ -5,14 +5,16 @@ if (process.env.NODE_ENV !== 'production') {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 }
 
-// For Supabase, use connection string format or individual parameters
+// Decide SSL usage: default false for local/self-hosted Postgres
+const url = (process.env.DATABASE_URL || '').toLowerCase();
+const useSsl = process.env.DB_SSL === 'true' || url.includes('sslmode=require');
+
+// For Postgres, use connection string format or individual parameters
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL || 
+    connectionString:
+        process.env.DATABASE_URL ||
         `postgresql://${process.env.DB_USER}:${process.env.DB_PASS || process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT || 5432}/${process.env.DB_NAME}`,
-    // Supabase uses SSL
-    ssl: {
-        rejectUnauthorized: false
-    }
+    ssl: useSsl ? { rejectUnauthorized: false } : false
 });
 
 pool.on('error', (err) => {
